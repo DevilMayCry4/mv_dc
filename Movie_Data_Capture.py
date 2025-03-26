@@ -391,13 +391,13 @@ def movie_lists(source_folder, regexstr: str) -> typing.List[str]:
     skip_numbers = set()
     success_folder = Path(conf.success_folder()).resolve()
     for f in success_folder.glob(r'**/*'):
-        if not re.match(r'\.nfo$', f.suffix, re.IGNORECASE):
-            continue
-        if file_modification_days(f) > nfo_skip_days:
-            continue
-        number = get_number(False, f.stem)
-        if not number:
-            continue
+        # if not re.match(r'\.nfo$', f.suffix, re.IGNORECASE):
+        #     continue
+        # if file_modification_days(f) > nfo_skip_days:
+        #     continue
+        # number = get_number(False, f.stem)
+        # if not number:
+        #     continue
         skip_numbers.add(number.lower())
 
     rm_list = []
@@ -555,7 +555,7 @@ def main(args: tuple) -> Path:
                     ) if not single_file_path else ('-', 'Single File', '', '', ''))
           )
 
-    if conf.update_check():
+    if False:
         try:
             check_update(version)
             # Download Mapping Table, parallel version
